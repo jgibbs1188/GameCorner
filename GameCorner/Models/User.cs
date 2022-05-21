@@ -1,4 +1,4 @@
-﻿namespace JoesHotDogs.Models
+﻿namespace GameCorner.Models
 {
     public class User
     {
