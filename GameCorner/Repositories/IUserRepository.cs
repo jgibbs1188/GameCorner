@@ -1,6 +1,6 @@
 ﻿using GameCorner.Models;
 
-namespace GameCorner.Repos
+namespace GameCorner.Repositories
 {
     public interface IUserRepository
     {
