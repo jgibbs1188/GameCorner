@@ -9,5 +9,6 @@ namespace GameCorner.Repositories
         void UpdateGame(Games games);
         void DeleteGame(int id);
         List<Games> GetGamesByUserId(string UserId);
+        void GetPlatform(int Id);
     }
 }
