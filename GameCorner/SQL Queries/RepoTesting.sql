@@ -10,7 +10,11 @@
 --WHERE UserId = 1
 
 --GetPlatform
-SELECT
-Id, Name 
-FROM Platforms
+--SELECT
+--Id, Name 
+--FROM Platforms
+--WHERE Id = 1
+
+--GetUserById
+SELECT * FROM [User]
 WHERE Id = 1
