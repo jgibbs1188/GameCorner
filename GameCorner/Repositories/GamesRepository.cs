@@ -31,7 +31,7 @@ namespace GameCorner.Repositories
                 {
                     cmd.CommandText = @"
                                        SELECT
-                                            Id, User ID, Title, Rating, PlatformId
+                                            Id, UserId, Title, Rating, PlatformId
                                        FROM Games
                                        WHERE Id = @Id
                                        ";
@@ -160,6 +160,41 @@ namespace GameCorner.Repositories
                     reader.Close();
                     return games;
                 };
+            }
+        }
+
+        public Platform GetPlatform(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        SELECT
+                                           Id, Name 
+                                        FROM Platforms
+                                        WHERE Id = @id
+                                       ";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        Platform platform = new Platform()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Name = reader.GetString(reader.GetOrdinal("Name")),
+                        };
+
+                        reader.Close();
+                        return platform;
+                    }
+                    reader.Close();
+                    return null;
+                }
             }
         }
     }
