@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCorner", "GameCorner\GameCorner.csproj", "{595BB6D8-CFC2-4B53-8E43-70581E18F121}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCorner", "GameCorner\GameCorner.csproj", "{595BB6D8-CFC2-4B53-8E43-70581E18F121}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "GameCornerClient", "GameCornerClient\GameCornerClient.esproj", "{4CC949D1-B754-4CB0-882C-A00C335F512E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,12 @@ Global
 		{595BB6D8-CFC2-4B53-8E43-70581E18F121}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{595BB6D8-CFC2-4B53-8E43-70581E18F121}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{595BB6D8-CFC2-4B53-8E43-70581E18F121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC949D1-B754-4CB0-882C-A00C335F512E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC949D1-B754-4CB0-882C-A00C335F512E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC949D1-B754-4CB0-882C-A00C335F512E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4CC949D1-B754-4CB0-882C-A00C335F512E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC949D1-B754-4CB0-882C-A00C335F512E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC949D1-B754-4CB0-882C-A00C335F512E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
