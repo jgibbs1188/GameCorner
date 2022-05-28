@@ -9,18 +9,18 @@ namespace GameCorner.Controllers
     [ApiController]
     public class UserController : Controller
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserRepository _userRepo;
 
         public UserController(IUserRepository userRepository)
         {
-            _userRepository = userRepository;
+            _userRepo = userRepository;
         }
 
         // GET: UserController/1
         [HttpGet("{id}")]
         public IActionResult GetUserById(string id)
         {
-            User user = _userRepository.GetUserById(id);
+            User user = _userRepo.GetUserById(id);
 
             if (user == null)
             {
