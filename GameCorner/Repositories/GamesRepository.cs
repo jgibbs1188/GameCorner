@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace GameCorner.Repositories
 {
-    public class GamesRepository
+    public class GamesRepository : IGamesRepository
     {
         private readonly IConfiguration _config;
 
@@ -95,6 +95,7 @@ namespace GameCorner.Repositories
                     cmd.CommandText = @"
                                         UPDATE Games
                                         SET
+                                            UserId = @userId,
                                             Title = @title,
                                             Rating = @rating,
                                             PlatformId = @platformId
@@ -102,6 +103,7 @@ namespace GameCorner.Repositories
                                        ";
 
                     cmd.Parameters.AddWithValue("@id", games.Id);
+                    cmd.Parameters.AddWithValue("@userId", games.UserId);
                     cmd.Parameters.AddWithValue("@title", games.Title);
                     cmd.Parameters.AddWithValue("@rating", games.Rating);
                     cmd.Parameters.AddWithValue("@platformId", games.PlatformId);
@@ -163,39 +165,39 @@ namespace GameCorner.Repositories
             }
         }
 
-        public Platform GetPlatform(int id)
-        {
-            using (SqlConnection conn = Connection)
-            {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"
-                                        SELECT
-                                           Id, Name 
-                                        FROM Platforms
-                                        WHERE Id = @id
-                                       ";
+        //public Platform GetPlatform(int id)
+        //{
+        //    using (SqlConnection conn = Connection)
+        //    {
+        //        conn.Open();
+        //        using (SqlCommand cmd = conn.CreateCommand())
+        //        {
+        //            cmd.CommandText = @"
+        //                                SELECT
+        //                                   Id, Name 
+        //                                FROM Platforms
+        //                                WHERE Id = @id
+        //                               ";
 
-                    cmd.Parameters.AddWithValue("@id", id);
+        //            cmd.Parameters.AddWithValue("@id", id);
 
-                    SqlDataReader reader = cmd.ExecuteReader();
+        //            SqlDataReader reader = cmd.ExecuteReader();
 
-                    if (reader.Read())
-                    {
-                        Platform platform = new Platform()
-                        {
-                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                            Name = reader.GetString(reader.GetOrdinal("Name")),
-                        };
+        //            if (reader.Read())
+        //            {
+        //                Platform platform = new Platform()
+        //                {
+        //                    Id = reader.GetInt32(reader.GetOrdinal("Id")),
+        //                    Name = reader.GetString(reader.GetOrdinal("Name")),
+        //                };
 
-                        reader.Close();
-                        return platform;
-                    }
-                    reader.Close();
-                    return null;
-                }
-            }
-        }
+        //                reader.Close();
+        //                return platform;
+        //            }
+        //            reader.Close();
+        //            return null;
+        //        }
+        //    }
+        //}
     }
 }
