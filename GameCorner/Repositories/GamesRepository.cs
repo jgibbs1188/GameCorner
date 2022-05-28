@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace GameCorner.Repositories
 {
-    public class GamesRepository
+    public class GamesRepository : IGamesRepository
     {
         private readonly IConfiguration _config;
 
@@ -95,6 +95,7 @@ namespace GameCorner.Repositories
                     cmd.CommandText = @"
                                         UPDATE Games
                                         SET
+                                            UserId = @userId,
                                             Title = @title,
                                             Rating = @rating,
                                             PlatformId = @platformId
@@ -102,6 +103,7 @@ namespace GameCorner.Repositories
                                        ";
 
                     cmd.Parameters.AddWithValue("@id", games.Id);
+                    cmd.Parameters.AddWithValue("@userId", games.UserId);
                     cmd.Parameters.AddWithValue("@title", games.Title);
                     cmd.Parameters.AddWithValue("@rating", games.Rating);
                     cmd.Parameters.AddWithValue("@platformId", games.PlatformId);
