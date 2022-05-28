@@ -74,10 +74,15 @@ namespace GameCorner.Controllers
             return Ok(matches);
         }
 
-        //[HttpGet("{id}")]
-        //public IActionResult GetPlatform(int id)
-        //{
-        //    var match = _
-        //}
+        [HttpGet("platform/{id}")]
+        public IActionResult GetPlatform(int id)
+        {
+            var match = _gamesRepo.GetPlatform(id);
+            if (match == null)
+            {
+                return NotFound();
+            }
+            return Ok(match);
+        }
     }
 }
