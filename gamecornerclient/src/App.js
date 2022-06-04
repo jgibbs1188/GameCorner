@@ -2,11 +2,20 @@
 //import { firebase } from "firebase/compat/app";
 //import "firebase/compat/auth";
 //import Routing from "./Routing";
+import Routes from "./Routing"
 import Navbar from "./Components/Navbar";
 //import "./App.css";
-import Login from "./Views/Login";
 
+function App() {
+    return (
+        <div>
+            <Navbar />
+            <Routes />
+        </div>
+    )
+}
 
+export default App;
 
 //function App() {
 //    const [user, setUser] = useState(null);
@@ -51,12 +60,4 @@ import Login from "./Views/Login";
 
 //export default App;
 
-function App() {
-    return (
-        <div>
-            <Navbar />
-            <Login />
-        </div>)
-}
 
-export default App;

@@ -1,8 +1,8 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { signInUser } from '../api/auth/auth';
-export default function Login({ user }) {
+
+export default function Login() {
     return (
         <div>
                 <>
@@ -17,9 +17,3 @@ export default function Login({ user }) {
 
     )
 }
-//Login.propTypes = {
-//    user: PropTypes.node
-//}
-//Login.defaultProps = {
-//    user: null,
-//}
