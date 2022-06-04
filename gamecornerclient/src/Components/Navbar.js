@@ -7,9 +7,9 @@ function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">
+                <div className="navbar-brand">
                     Game Corner
-                </a>
+                </div>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -23,7 +23,7 @@ function Navbar() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
-                        <a className="nav-link active" aria-current="page" href="/Games">
+                        <a className="nav-link active" aria-current="page" href="/">
                             Home
                         </a>
                         <a className="nav-link active" aria-current="page" href="/Games">
@@ -33,7 +33,7 @@ function Navbar() {
                             New Game
                         </a>
                         <button className="btn btn-danger" onClick={signOutUser}>
-                            Log Out
+                            Sign Out
                         </button>
                     </div>
                 </div>
