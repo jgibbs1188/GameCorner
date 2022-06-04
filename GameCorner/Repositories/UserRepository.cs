@@ -57,6 +57,31 @@ namespace GameCorner.Repositories
                 }
             }
         }
+
+        public void AddUser(User user)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO [User] (Id, FirstName, LastName, Email)
+                        OUTPUT INSERTED.ID
+                        VALUES (@id, @firstName, @lastName, @email);
+                    ";
+
+                    cmd.Parameters.AddWithValue("@id", user.Id);
+                    cmd.Parameters.AddWithValue("@firstName", user.FirstName);
+                    cmd.Parameters.AddWithValue("@lastName", user.LastName);
+                    cmd.Parameters.AddWithValue("@email", user.Email);
+
+                    cmd.ExecuteNonQuery();
+
+
+                }
+            }
+        }
     }
 }
 

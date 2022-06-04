@@ -28,5 +28,20 @@ namespace GameCorner.Controllers
             }
             return Ok(user);
         }
+
+        [HttpPost]
+        public IActionResult AddUser(User newUser)
+        {
+            if (newUser == null)
+            {
+                return NotFound();
+
+            }
+            else
+            {
+                _userRepo.AddUser(newUser);
+                return Ok(newUser);
+            }
+        }
     }
 }
