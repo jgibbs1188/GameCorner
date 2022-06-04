@@ -8,6 +8,7 @@
     <JavaScriptTestFramework>Jest</JavaScriptTestFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\Initialize\" />
     <Folder Include="src\Routing\" />
   </ItemGroup>
 </Project>

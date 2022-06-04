@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+//import React, { useState, useEffect } from "react";
+//import { firebase } from "firebase/compat/app";
+//import "firebase/compat/auth";
+//import Routing from "./Routing";
+import Navbar from "./Components/Navbar";
+//import "./App.css";
+import Login from "./Views/Login";
+
+
+
+//function App() {
+//    const [user, setUser] = useState(null);
+
+//    useEffect(() => {
+//        firebase.auth().onAuthStateChanged((authed) => {
+//            console.log(authed)
+//            if (authed) {
+//                const userName = authed.displayName;
+//                const values = userName.split(" ");
+//                const fName = values[0];
+//                const lName = values[1];
+//                const userInfoObj = {
+//                    id: authed.uid,
+//                    firstName: fName,
+//                    lastName: lName,
+//                    email: authed.email,
+//                };
+//                setUser(userInfoObj);
+
+
+
+
+//            } else if (user || user === null) {
+//                setUser(false);
+//            }
+//        });
+//    }, []);
+//    return (
+//        <div>
+//            {user ? (
+//                <>
+//                    <Navbar />
+//                    <Routing uid={user.id} />
+//                </>
+//            ) : (
+//                <Login user={user} />
+//            )}
+//        </div>
+//    );
+//}
+
+//export default App;
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <Navbar />
+            <Login />
+        </div>)
 }
 
 export default App;
