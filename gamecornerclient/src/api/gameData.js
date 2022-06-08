@@ -45,10 +45,19 @@ const getGameById = (id) =>
       .catch(reject);
   });
 
+  const getPlatform = (id) =>
+  new Promise((resolve, reject) => {
+    axios
+      .get(`${baseURL}/Games/Platform/${id}`)
+      .then((response) => resolve(response.data))
+      .catch(reject);
+  });
+
   export {
       getGameById,
       getGamesByUserId,
       createGame,
       updateGame,
       deleteGame,
+      getPlatform,
   }
