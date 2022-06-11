@@ -1,27 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { useNavigate } from "react-router-dom";
-// import { deleteGame, getGamesByUserId } from "../api/gameData";
-// import getCurrentUsersUid from "../helpers/getCurrentUsersUid";
+import { useNavigate } from "react-router-dom";
+import { deleteGame, getGamesByUserId } from "../api/gameData";
+import getCurrentUsersUid from "../helpers/getCurrentUsersUid";
 
 export default function GameCard({ game, setGames }) {
-  // const userId = getCurrentUsersUid();
-  // const navigate = useNavigate();
+  const userId = getCurrentUsersUid();
+  const navigate = useNavigate();
 
   const handleClick = (method) => {
     console.log(method);
     if (method === "delete") {
-  //     deleteGame(game.id).then(() => {
-  //     getGamesByUserId(userId).then(setGames)})
-  console.log("You tried to delete this game! This function isn't written/linked yet.");
+      deleteGame(game.id).then(() => {
+      getGamesByUserId(userId).then(setGames)})
+  // console.log("You tried to delete this game! This function isn't written/linked yet.");
     } 
-    else if (method === "edit") {
-  //   //   navigate(`/Games/${game.id}`);
-    console.log("You tried to edit this game! This function isn't written/linked yet.");
+    else if (method === "update") {
+      navigate(`/NewGameForm/${game.id}`);
+    // console.log("You tried to edit this game! This function isn't written/linked yet.");
     } 
     else if (method === "details") {
-  //   //     navigate(`/Games/${game.id}`);
-    console.log("You tried to view the details of this game! This function isn't written/linked yet.");
+        navigate(`/Games/${game.id}`);
+    // console.log("You tried to view the details of this game! This function isn't written/linked yet.");
     }
   };
 
@@ -34,7 +34,7 @@ export default function GameCard({ game, setGames }) {
           <button type="button" className="btn btn-info" onClick = {() => handleClick("details")}>
             Info
           </button>
-          <button type="button" className="btn btn-outline-success" onClick={() => handleClick("edit")}>
+          <button type="button" className="btn btn-outline-success" onClick={() => handleClick("update")}>
             Update
           </button>
           <button type="button" className="btn btn-danger" onClick={() => handleClick("delete")}>

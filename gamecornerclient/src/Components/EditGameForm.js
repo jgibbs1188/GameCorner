@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import getCurrentUsersUid from '../helpers/getCurrentUsersUid';
-import { createGame, updateGame } from '../api/gameData';
+import { createGame, getPlatform, updateGame } from '../api/gameData';
 import { useNavigate } from 'react-router-dom';
 
 const initialGameState = {
@@ -12,10 +12,21 @@ const initialGameState = {
   userId: '',
 };
 
-function NewGameForm({ game = {} }) {
+function UpdateGameForm({ game = {} }) {
   const currentUserId = getCurrentUsersUid();
   const navigate = useNavigate();
   const [formInput, setFormInput] = useState(initialGameState);
+
+    const platforms = getPlatform().then((platformArray) => {
+        setPlatform(platformArray);
+    })
+
+
+  const [platform, setPlatform] = useState("Select a Platform");
+
+  const handlePlatformChange = (e) => {
+    setPlatform(e.target.value)
+  }
 
   useEffect(() => {
     if (game.id) {
@@ -26,7 +37,7 @@ function NewGameForm({ game = {} }) {
         userId: currentUserId,
       });
     }
-  }, [currentUserId, game]);
+  }, [game, currentUserId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -84,15 +95,10 @@ function NewGameForm({ game = {} }) {
         />
       </div>
       <div>
-        <input
-          className="form-control input"
-          type="text"
-          name="platformId"
-          id="platformId"
-          value={formInput.platformId || ""}
-          onChange={handleChange}
-          placeholder="PLATFORM"
-        />
+        <select onChange={handlePlatformChange}>
+            <option value="Select a Platform"> -- Choose a Platform -- </option>
+            {platforms.map((platform) => <option value={platform.value}>{platform.label}</option>)}
+        </select>
       </div>
       <button className="btn btn-success" type="submit">
         {game.id ? 'UPDATE' : 'SUBMIT'}
@@ -101,7 +107,7 @@ function NewGameForm({ game = {} }) {
   );
 }
 
-NewGameForm.propTypes = {
+UpdateGameForm.propTypes = {
   game: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
@@ -111,8 +117,8 @@ NewGameForm.propTypes = {
   })
 };
 
-NewGameForm.defaultProps = {
+UpdateGameForm.defaultProps = {
   game: {},
 };
 
-export default NewGameForm;
+export default UpdateGameForm;
