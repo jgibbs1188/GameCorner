@@ -7,7 +7,7 @@ const checkUserCreatedInDB = async () => {
 	const token = sessionStorage.getItem("token");
 
 	//send the request with an Authorization header containing the token
-	await axios.get(`${baseURL}/Users/Auth`, {
+	await axios.get(`${baseURL}/User/Auth`, {
 		headers: { Authorization: 'Bearer ' + token },
 	});
 };

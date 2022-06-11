@@ -41,9 +41,9 @@ namespace GameCorner.Repositories
                         User user = new User
                         {
                             Id = reader.GetString(reader.GetOrdinal("id")),
-                            FirstName = reader.GetString(reader.GetOrdinal("firstName")),
-                            LastName = reader.GetString(reader.GetOrdinal("lastName")),
-                            Email = reader.GetString(reader.GetOrdinal("email")),
+                            //FirstName = reader.GetString(reader.GetOrdinal("firstName")),
+                            //LastName = reader.GetString(reader.GetOrdinal("lastName")),
+                            //Email = reader.GetString(reader.GetOrdinal("email")),
 
                         };
 
@@ -66,15 +66,15 @@ namespace GameCorner.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO [User] (Id, FirstName, LastName, Email)
-                        OUTPUT INSERTED.ID
-                        VALUES (@id, @firstName, @lastName, @email);
+                        INSERT INTO [User] (Id)
+                        OUTPUT INSERTED.Id
+                        VALUES (@id);
                     ";
 
                     cmd.Parameters.AddWithValue("@id", user.Id);
-                    cmd.Parameters.AddWithValue("@firstName", user.FirstName);
-                    cmd.Parameters.AddWithValue("@lastName", user.LastName);
-                    cmd.Parameters.AddWithValue("@email", user.Email);
+                    //cmd.Parameters.AddWithValue("@firstName", user.FirstName);
+                    //cmd.Parameters.AddWithValue("@lastName", user.LastName);
+                    //cmd.Parameters.AddWithValue("@email", user.Email);
 
                     cmd.ExecuteNonQuery();
 
@@ -83,7 +83,7 @@ namespace GameCorner.Repositories
             }
         }
 
-        public bool CheckUserExists(string id)
+        public bool checkUserCreatedInDB(string id)
         {
             using (SqlConnection conn = Connection)
             {
@@ -112,4 +112,3 @@ namespace GameCorner.Repositories
         }
     }
 }
-

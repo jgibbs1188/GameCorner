@@ -50,7 +50,7 @@ namespace GameCorner.Controllers
         public async Task<IActionResult> GetUserAuthStatus()
         {
             string userId = User.FindFirst(claim => claim.Type == "user_id").Value;
-            bool userexists = _userRepo.CheckUserExists(userId);
+            bool userexists = _userRepo.checkUserCreatedInDB(userId);
             if (!userexists)
             {
                 User userFromToken = new User()
