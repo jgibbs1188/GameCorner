@@ -29,7 +29,7 @@ function Navbar() {
                         <a className="nav-link active" aria-current="page" href="/Games">
                             Games
                         </a>
-                        <a className="nav-link active" aria-current="page" href="/NewGame">
+                        <a className="nav-link active" aria-current="page" href="/NewGameForm">
                             New Game
                         </a>
                         <button className="btn btn-danger" onClick={signOutUser}>

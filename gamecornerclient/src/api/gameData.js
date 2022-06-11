@@ -18,10 +18,10 @@ const getGameById = (id) =>
       .catch(reject);
   });
 
-  const createGame = (newGame) =>
+  const createGame = (newGameObj) =>
   new Promise((resolve, reject) => {
     axios
-      .post(`${baseURL}/Games`, newGame)
+      .post(`${baseURL}/Games`, newGameObj)
       .then((response) => {
         resolve(response.data.id);
       })
