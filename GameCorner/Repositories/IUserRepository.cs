@@ -6,5 +6,6 @@ namespace GameCorner.Repositories
     {
         User GetUserById(string id);
         void AddUser(User user);
+        public bool checkUserCreatedInDB(string id);
     }
 }
