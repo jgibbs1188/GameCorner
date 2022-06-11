@@ -5,23 +5,16 @@ import getCurrentUsersUid from "../helpers/getCurrentUsersUid";
 
 
 export default function Games() {
-  const [games, setGames] = useState();
+  const [games, setGames] = useState([]);
   const userId = getCurrentUsersUid();
 
-  useEffect(() => {
-    console.log(userId);
+  useEffect(() => { 
     getGamesByUserId(userId).then((array) => {
         setGames(array);
+        console.log(array);
+        console.log(setGames);
     });
-  }, []);
-
-//   const getGamesByUserId = (userId) =>
-//   new Promise((resolve, reject) => {
-//     axios
-//       .get(`${baseURL}/Games/user/${userId}`)
-//       .then((response) => resolve(Object.values(response.data)))
-//       .catch(reject);
-//   });
+  }, [userId]);
 
   return (
     <>

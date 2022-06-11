@@ -52,16 +52,16 @@ INSERT INTO Platforms ([name])
 
 
 INSERT INTO Games (title, userId, rating, platformId)
-	VALUES ('Ark', '1', 8, 3);
+	VALUES ('Ark', '2', 8, 3);
 
 INSERT INTO Games (title, userId, rating, platformId)
-	VALUES ('Destiny', '1', 7, 3);
+	VALUES ('Destiny', 'UOhIdhsXIhaD1kkvi4bWNQdCNjN2', 7, 3);
 
 INSERT INTO Games (title, userId, rating, platformId)
-	VALUES ('Rocket League', '1', 10, 1);
+	VALUES ('Rocket League', 'UOhIdhsXIhaD1kkvi4bWNQdCNjN2', 10, 1);
 
 INSERT INTO Games (title, userId, rating, platformId)
-	VALUES ('Civilization', '1', 8, 3);
+	VALUES ('Civilization', 'UOhIdhsXIhaD1kkvi4bWNQdCNjN2', 8, 3);
 
 
 INSERT INTO [User] (id, firstName, lastName, email)
