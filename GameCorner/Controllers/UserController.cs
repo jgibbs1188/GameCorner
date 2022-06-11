@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using GameCorner.Repositories;
 using GameCorner.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GameCorner.Controllers
 {
@@ -42,6 +43,28 @@ namespace GameCorner.Controllers
                 _userRepo.AddUser(newUser);
                 return Ok(newUser);
             }
+        }
+
+        [Authorize]
+        [HttpGet("Auth")]
+        public async Task<IActionResult> GetUserAuthStatus()
+        {
+            string userId = User.FindFirst(claim => claim.Type == "user_id").Value;
+            bool userexists = _userRepo.CheckUserExists(userId);
+            if (!userexists)
+            {
+                User userFromToken = new User()
+                {
+
+                    Id = userId,
+
+                };
+
+                _userRepo.AddUser(userFromToken);
+                return Ok();
+            }
+            User existingUser = _userRepo.GetUserById(userId);
+            return Ok(existingUser);
         }
     }
 }

@@ -82,6 +82,34 @@ namespace GameCorner.Repositories
                 }
             }
         }
+
+        public bool CheckUserExists(string id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT id
+                                        FROM [User]
+										WHERE id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        reader.Close();
+                        return false;
+                    }
+                }
+            }
+        }
     }
 }
 

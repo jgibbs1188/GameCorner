@@ -13,7 +13,7 @@ const getGameById = (id) =>
   const getGamesByUserId = (userId) =>
   new Promise((resolve, reject) => {
     axios
-      .get(`${baseURL}/Games/user/${userId}`)
+      .get(`${baseURL}/Games/User/${userId}`)
       .then((response) => resolve(Object.values(response.data)))
       .catch(reject);
   });
