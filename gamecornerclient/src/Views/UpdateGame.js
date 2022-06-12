@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getGameById } from '../api/gameData';
+import NewGameForm from '../Components/NewGameForm';
 
 export default function UpdateGame() {
-    const [updateGame, setUpdateGame] = useState();
-    const { key } = useParams();
+    const [updateGame, setUpdateGame] = useState({});
+    const { gameId } = useParams();
 
 useEffect(() => {
-    getGameById(key).then((response)=> setUpdateGame(response));
-}, [key])
+    console.log(gameId);
+    getGameById(gameId).then((gameObj)=> setUpdateGame(gameObj));
+}, [gameId])
+
+console.log(updateGame);
 
   return (
     <div>
-        <setUpdateGame obj={updateGame} />
+        <NewGameForm game={updateGame} />
     </div>
   )
 }
