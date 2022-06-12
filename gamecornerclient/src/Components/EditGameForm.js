@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import getCurrentUsersUid from '../helpers/getCurrentUsersUid';
-import { createGame, getPlatform, updateGame } from '../api/gameData';
+import { createGame, updateGame } from '../api/gameData';
 import { useNavigate } from 'react-router-dom';
 
 const initialGameState = {
@@ -17,16 +17,16 @@ function UpdateGameForm({ game = {} }) {
   const navigate = useNavigate();
   const [formInput, setFormInput] = useState(initialGameState);
 
-    const platforms = getPlatform().then((platformArray) => {
-        setPlatform(platformArray);
-    })
+//     const platforms = getPlatform().then((platformArray) => {
+//         setPlatform(platformArray);
+//     })
 
 
-  const [platform, setPlatform] = useState("Select a Platform");
+//   const [platform, setPlatform] = useState("Select a Platform");
 
-  const handlePlatformChange = (e) => {
-    setPlatform(e.target.value)
-  }
+//   const handlePlatformChange = (e) => {
+//     setPlatform(e.target.value)
+//   }
 
   useEffect(() => {
     if (game.id) {
@@ -95,10 +95,10 @@ function UpdateGameForm({ game = {} }) {
         />
       </div>
       <div>
-        <select onChange={handlePlatformChange}>
+        {/* <select onChange={handlePlatformChange}>
             <option value="Select a Platform"> -- Choose a Platform -- </option>
             {platforms.map((platform) => <option value={platform.value}>{platform.label}</option>)}
-        </select>
+        </select> */}
       </div>
       <button className="btn btn-success" type="submit">
         {game.id ? 'UPDATE' : 'SUBMIT'}
