@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import getCurrentUsersUid from '../helpers/getCurrentUsersUid';
 import { createGame, updateGame } from '../api/gameData';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const initialGameState = {
   id: 0,
@@ -12,10 +12,15 @@ const initialGameState = {
   userId: '',
 };
 
+
 function NewGameForm({ obj = {} }) {
   const currentUserId = getCurrentUsersUid();
   const navigate = useNavigate();
-  const [formInput, setFormInput] = useState(initialGameState);
+  const [formInput, setFormInput] = useState({
+    ...initialGameState,
+  });
+
+  const game = useParams();
 
   useEffect(() => {
     console.log(obj);
@@ -26,6 +31,7 @@ function NewGameForm({ obj = {} }) {
         platformId: obj.platformId,
         userId: currentUserId,
       });
+      console.log(game.title);
     }
   }, [currentUserId, obj]);
 
@@ -68,7 +74,7 @@ function NewGameForm({ obj = {} }) {
           type="text"
           name="title"
           id="title"
-          value={formInput.title || ""}
+          value={game.title || ""}
           onChange={handleChange}
           placeholder="TITLE"
         />
@@ -79,7 +85,7 @@ function NewGameForm({ obj = {} }) {
           type="text"
           name="rating"
           id="rating"
-          value={formInput.rating || ""}
+          value={game.rating || ""}
           onChange={handleChange}
           placeholder="RATING"
         />
@@ -90,7 +96,7 @@ function NewGameForm({ obj = {} }) {
           type="text"
           name="platformId"
           id="platformId"
-          value={formInput.platformId || ""}
+          value={game.platformId || ""}
           onChange={handleChange}
           placeholder="PLATFORM"
         />
