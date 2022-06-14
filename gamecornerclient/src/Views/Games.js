@@ -11,8 +11,6 @@ export default function Games() {
   useEffect(() => { 
     getGamesByUserId(userId).then((array) => {
         setGames(array);
-        console.log(array);
-        console.log(setGames);
     });
   }, [userId]);
 

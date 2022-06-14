@@ -14,7 +14,7 @@ export default function Routing() {
                 <Route exact path='/Games' element={<Games />} />
                 <Route exact path="/Games/:key" element={<GameDetails />} />
                 <Route exact path="/NewGameForm" element={<NewGameForm />} />
-                <Route exact path="/NewGameForm/:gameId" element={<UpdateGame />} />
+                <Route exact path="/NewGameForm/:key" element={<UpdateGame />} />
             </Routes>
 
         </div>

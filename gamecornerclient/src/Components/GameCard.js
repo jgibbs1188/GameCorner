@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { deleteGame, getGamesByUserId } from "../api/gameData";
 import getCurrentUsersUid from "../helpers/getCurrentUsersUid";
-import UpdateButton from "./buttons/UpdateButton";
 
 export default function GameCard({ game, setGames }) {
   const userId = getCurrentUsersUid();
@@ -35,9 +34,9 @@ export default function GameCard({ game, setGames }) {
           <button type="button" className="btn btn-info" onClick = {() => handleClick("details")}>
             Info
           </button>
-          <UpdateButton 
-              gameId={game.id}>
-          </UpdateButton>
+          <button type="button" className="btn btn-outline-success" onClick={() => handleClick("update")}>
+            Update
+          </button>
           <button type="button" className="btn btn-danger" onClick={() => handleClick("delete")}>
             Delete
           </button>

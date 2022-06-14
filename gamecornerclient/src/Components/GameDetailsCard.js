@@ -12,17 +12,11 @@ export default function GameDetailsCard({ game }) {
       if (method === "delete") {
         deleteGame(game.id).then(() => {
         navigate(`/Games`)});
-    // console.log("You tried to delete this game! This function isn't written/linked yet.");
       } 
       else if (method === "update") {
         navigate(`/NewGameForm/${game.id}`);
-      // console.log("You tried to edit this game! This function isn't written/linked yet.");
       }
     };
-
-    // const handlePlatform = (id) => {
-    //     if (id === "1")
-    // }
 
     return (
         <>

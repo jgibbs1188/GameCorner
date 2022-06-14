@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import getCurrentUsersUid from '../helpers/getCurrentUsersUid';
 import { createGame, updateGame } from '../api/gameData';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const initialGameState = {
   id: 0,
@@ -12,27 +12,22 @@ const initialGameState = {
   userId: '',
 };
 
-function NewGameForm() {
+function NewGameForm({ obj = {} }) {
   const currentUserId = getCurrentUsersUid();
   const navigate = useNavigate();
-  const [formInput, setFormInput] = useState({
-    ...initialGameState,
-  });
-
-  const game = useParams();
+  const [formInput, setFormInput] = useState(initialGameState);
 
   useEffect(() => {
-    console.log(game.id);
-    if (game.id) {
+    console.log(obj);
+    if (obj.id) {
       setFormInput({
-        title: game.title,
-        rating: game.rating,
-        platformId: game.platformId,
+        title: obj.title,
+        rating: obj.rating,
+        platformId: obj.platformId,
         userId: currentUserId,
       });
-      console.log(game.title);
     }
-  }, [game, currentUserId]);
+  }, [currentUserId, obj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,10 +43,10 @@ function NewGameForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (game.id) {
-      updateGame(...formInput).then(() => {
+    if (obj.id) {
+      updateGame(obj.id, { ...formInput, userId: currentUserId, id: obj.id }).then(() => {
         resetForm();
-        navigate(`/Games/${game.id}`);
+        navigate(`/Games`);
       });
     } else {
       createGame({
@@ -65,15 +60,15 @@ function NewGameForm() {
   };
 
   return (
-    <form onSubmit={() => handleSubmit}>
-      <h1>{game.id ? 'Edit' : 'Save'} Your Game</h1>
+    <form onSubmit={handleSubmit}>
+      <h1>{obj.id ? 'Edit' : 'Save'} Your New Game</h1>
       <div>
         <input
           className="form-control input"
           type="text"
           name="title"
           id="title"
-          value={game.title || ""}
+          value={formInput.title || ""}
           onChange={handleChange}
           placeholder="TITLE"
         />
@@ -84,7 +79,7 @@ function NewGameForm() {
           type="text"
           name="rating"
           id="rating"
-          value={game.rating || ""}
+          value={formInput.rating || ""}
           onChange={handleChange}
           placeholder="RATING"
         />
@@ -95,20 +90,20 @@ function NewGameForm() {
           type="text"
           name="platformId"
           id="platformId"
-          value={game.platformId || ""}
+          value={formInput.platformId || ""}
           onChange={handleChange}
           placeholder="PLATFORM"
         />
       </div>
       <button className="btn btn-success" type="submit">
-        {game.id ? 'UPDATE' : 'SUBMIT'}
+        {obj.id ? 'UPDATE' : 'SUBMIT'}
       </button>
     </form>
   );
 }
 
 NewGameForm.propTypes = {
-    game: PropTypes.shape({
+  obj: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
     rating: PropTypes.number,
@@ -118,7 +113,7 @@ NewGameForm.propTypes = {
 };
 
 NewGameForm.defaultProps = {
-    game: {},
+  obj: {},
 };
 
 export default NewGameForm;

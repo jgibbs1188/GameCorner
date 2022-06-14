@@ -5,18 +5,17 @@ import NewGameForm from '../Components/NewGameForm';
 
 export default function UpdateGame() {
     const [updateGame, setUpdateGame] = useState({});
-    const { gameId } = useParams();
+    const { key } = useParams();
 
 useEffect(() => {
-    console.log(gameId);
-    getGameById(gameId).then((gameObj)=> setUpdateGame(gameObj));
-}, [gameId])
-
-console.log(updateGame);
+  
+    getGameById(key).then((response)=> setUpdateGame(response));
+    console.log(updateGame);
+}, [])
 
   return (
     <div>
-        <NewGameForm game={updateGame} />
+        <NewGameForm obj={updateGame} />
     </div>
   )
 }
