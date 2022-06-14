@@ -28,12 +28,11 @@ const getGameById = (id) =>
       .catch(reject);
   });
 
-  const updateGame = (gameObj) =>
+  const updateGame = (id, gameObj) =>
   new Promise((resolve, reject) => {
     axios
-      .put(`${baseURL}/Games/${gameObj.id}`, gameObj)
-      .then(() =>getGamesByUserId(gameObj.userId).then(resolve))
-    
+      .put(`${baseURL}/Games/${id}`, gameObj)
+      .then(() => getGamesByUserId(gameObj.userId).then(resolve))
       .catch(reject);
   });
 

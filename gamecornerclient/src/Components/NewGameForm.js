@@ -12,21 +12,22 @@ const initialGameState = {
   userId: '',
 };
 
-function NewGameForm({ game = {} }) {
+function NewGameForm({ obj = {} }) {
   const currentUserId = getCurrentUsersUid();
   const navigate = useNavigate();
   const [formInput, setFormInput] = useState(initialGameState);
 
   useEffect(() => {
-    if (game.id) {
+    console.log(obj);
+    if (obj.id) {
       setFormInput({
-        gameTitle: game.title,
-        gameRating: game.rating,
-        gamePlatform: game.platformId,
+        title: obj.title,
+        rating: obj.rating,
+        platformId: obj.platformId,
         userId: currentUserId,
       });
     }
-  }, [currentUserId, game]);
+  }, [currentUserId, obj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,10 +43,10 @@ function NewGameForm({ game = {} }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (game.id) {
-      updateGame(formInput).then(() => {
+    if (obj.id) {
+      updateGame(obj.id, { ...formInput, userId: currentUserId, id: obj.id }).then(() => {
         resetForm();
-        navigate(`/Games/${game.id}`);
+        navigate(`/Games`);
       });
     } else {
       createGame({
@@ -60,7 +61,7 @@ function NewGameForm({ game = {} }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>{game.id ? 'Edit' : 'Save'} Your New Game</h1>
+      <h1>{obj.id ? 'Edit' : 'Save'} Your New Game</h1>
       <div>
         <input
           className="form-control input"
@@ -95,14 +96,14 @@ function NewGameForm({ game = {} }) {
         />
       </div>
       <button className="btn btn-success" type="submit">
-        {game.id ? 'UPDATE' : 'SUBMIT'}
+        {obj.id ? 'UPDATE' : 'SUBMIT'}
       </button>
     </form>
   );
 }
 
 NewGameForm.propTypes = {
-  game: PropTypes.shape({
+  obj: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
     rating: PropTypes.number,
@@ -112,7 +113,7 @@ NewGameForm.propTypes = {
 };
 
 NewGameForm.defaultProps = {
-  game: {},
+  obj: {},
 };
 
 export default NewGameForm;
