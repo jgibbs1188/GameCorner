@@ -13,15 +13,12 @@ export default function GameCard({ game, setGames }) {
     if (method === "delete") {
       deleteGame(game.id).then(() => {
       getGamesByUserId(userId).then(setGames)})
-  // console.log("You tried to delete this game! This function isn't written/linked yet.");
     } 
     else if (method === "update") {
       navigate(`/NewGameForm/${game.id}`);
-    // console.log("You tried to edit this game! This function isn't written/linked yet.");
     } 
     else if (method === "details") {
         navigate(`/Games/${game.id}`);
-    // console.log("You tried to view the details of this game! This function isn't written/linked yet.");
     }
   };
 

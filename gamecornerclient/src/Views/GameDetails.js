@@ -7,10 +7,14 @@ import GameDetailsCard from '../Components/GameDetailsCard';
 export default function GameDetails(){
     const [singleGame, setSingleGame] = useState({});
     const { key } = useParams();
+//     const [platform, setPlatform] = useState({});
 
     useEffect(() => {
-        getGameById(key).then(setSingleGame)
+        getGameById(key).then(setSingleGame);
+        // getPlatform(singleGame.platformId).then(setPlatform);
     }, []);
+
+    
 
     return (
         <div>

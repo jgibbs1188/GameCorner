@@ -84,7 +84,7 @@ function NewGameForm({ obj = {} }) {
           placeholder="RATING"
         />
       </div>
-      <div>
+      {/* <div>
         <input
           className="form-control input"
           type="text"
@@ -94,7 +94,7 @@ function NewGameForm({ obj = {} }) {
           onChange={handleChange}
           placeholder="PLATFORM"
         />
-      </div>
+      </div> */}
       <button className="btn btn-success" type="submit">
         {obj.id ? 'UPDATE' : 'SUBMIT'}
       </button>
